@@ -1,0 +1,98 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{amsmath}    % need for subequations
+\usepackage{graphicx}   % need for figures
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\usepackage[affil-it]{authblk}
+\usepackage[margin = 1in] {geometry}
+\usepackage{float}
+\usepackage{layouts}
+%\usepackage{gensymb}
+
+\makeatletter
+\def\@maketitle{
+  \newpage
+  \null
+  \vskip 2em
+  \begin{center}
+  \let \footnote \thanks
+    {\Large\bfseries \@title \par}
+    \vskip 1.5em
+    {\normalsize
+      \lineskip .5em
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par}
+    \vskip 1em
+    {\normalsize \@date}
+  \end{center}
+  \par
+  \vskip 1.5em}
+\makeatother
+
+
+\title{Critique of GruMon: Fast and Accurate Group Monitoring for Heterogeneous Urban Spaces}
+\author[]{Kashev Dalmia, Ryan Freedman, and Terence Nip}
+\affil[]{University of Illinois at Urbana-Champaign}
+\date{\today}
+
+\raggedbottom
+
+\begin{document}
+
+\maketitle
+
+\section{\bf Summary}
+The paper summarizes the process that the researchers went through to develop the GruMon system. After discussing previous attempts to create classifiers with the same goal the paper describes the method it uses. The system is used to distinguish individuals from groups by detecting activity/location information using phone sensors, computing similarities between pairs, and passing them through a classifier. The motivations behind developing GruMon were primarily for group detection to allow for better advertising and resource planning in crowded areas. There were three trials used for measurement and testing: a Korean mall, a Singaporean mall, and an International Airport. The three trials had varying means of detection, participants, and incentives for participation.
+
+\section{\bf Critique}
+\begin{center}
+% These are just bullets now, will correct later
+- Airport had ground truth group number, cannot apply accuracy at any other scale than O(100) \\
+- Motivation is interesting but grouping people together automatically for promotions might lose store profits
+\end{center}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
