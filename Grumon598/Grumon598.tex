@@ -46,7 +46,17 @@
 \maketitle
 
 \section{\bf Summary}
-The paper summarizes the process that the researchers went through to develop the GruMon system. After discussing previous attempts to create classifiers with the same goal the paper describes the method it uses. The system is used to distinguish individuals from groups by detecting activity/location information using phone sensors, computing similarities between pairs, and passing them through a classifier. The motivations behind developing GruMon were primarily for group detection to allow for better advertising and resource planning in crowded areas. There were three trials used for measurement and testing: a Korean mall, a Singaporean mall, and an International Airport. The three trials had varying means of detection, participants, and incentives for participation.
+The paper summarizes the process that the researchers went through to develop
+the GruMon system. After discussing previous attempts to create classifiers with
+the same goal the paper describes the method it uses. The system is used to
+distinguish individuals from groups by detecting activity/location information
+using phone sensors, computing similarities between pairs, and passing them
+through an SVM classifier. The motivations behind developing GruMon were
+primarily for group detection to allow for better advertising and resource
+planning in crowded areas. There were three trials used for measurement and
+testing: a Korean mall, a Singaporean mall, and an International Airport. The
+three trials had varying means of detection, participants, and incentives for
+participation.
 
 \section{\bf Critique}
 \begin{center}
@@ -60,44 +70,19 @@ The paper summarizes the process that the researchers went through to develop th
 - Interesting that they punted on locked down OSes after mentioning anon traces -- something something wifi triangulation? (Is it the case that access points just broadcast and it's up to the end user device to ack \& request connection, or is it the case that the end user device polls the AP?) \\
 \end{center}
 
+\section{\bf Praise}
+Despite our criticisms, there several things that the paper did well. At the end
+of the day, for both Mall data sets, GruMon was able to achieve over 90\%
+precision, which is quite good for the purposes of advertising. Another thing
+that they did well was feature selection; though they did use several features
+for their classifier, all those features were chosen based on an insight of how
+actual humans behave in groups. For instance, the barometer was used and given
+high weight because humans in groups tend not to be on different floors of a
+venue, even if they're visiting different stores within the floor. It would have
+been easy to just log values for every sensor the phone had and throw them in a
+classifier, but instead, they chose carefully, and thus saved battery life of
+the devices used. Finally, it was interesting and impressive that they had a
+good method of combating poor external infrastructure, like the few and poorly
+placed WiFi access points in Mall 2.
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
