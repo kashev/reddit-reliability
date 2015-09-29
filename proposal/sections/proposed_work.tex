@@ -1,16 +1,19 @@
-Say what we're going to do, here, and a little bit about how it's going to work.
-\[TODO\]
+In light of the issues with Reddit, it is valuable to determine the reliability
+of Redditors automatically. We plan to do this by creating a Reliability Score,
+ranging beetween $-1.0$ and $1.0$, in which a more positive number denotes a
+user who is more reliable, and a negative score denotes a user who is less
+reliable. Furthermore, we hope to show that based on indicators used to
+calculate this score over time, that we can anticipate the trend of a Redditor's
+reliability. This has implications in creating reliable users by predicting
+their trajectory of behavior. One could take this trajectory, compare it to a
+more `desirable' trajectory, and perhaps even nudge Redditors towards a more
+Reliable trajectory.
 
 The following sections discuss some technical challenges we anticipate, and our
 plans to overcome them.
 
-\subsection{Gathering Usernames}
-\label{sub:gathering_usernames}
-\[TODO\]
-% subsubsection gathering_usernames (end)
-
 \subsection{Creating A Reliability Score}
-\label{sub:creating_a_reliability_score}
+\label{sub:creating_a_reliability_scorle}
 Talk about:
 \begin{enumerate}
     \item Relibility Karma vs overall karma
@@ -21,8 +24,29 @@ Talk about:
 \end{enumerate}
 % subsubsection creating_a_reliability_score (end)
 
-\subsection{Verification} % (fold)
+\subsection{Gathering Usernames}
+\label{sub:gathering_usernames}
+
+Reddit does not have an API for gathering or searching for usernames. It does
+however, allow one to see popular posts on particular Subreddits, or in general,
+the front page. We plan to mine usernames by looking at popular posts and
+comments on those posts, and logging the usernames associated with those
+activities. This list of usernames can then be plugged into our reliability
+score calculations, and used to train our classifiers for behavior prediciton.
+
+% subsubsection gathering_usernames (end)
+
+\subsection{Verification}
 \label{sub:verification}
-\[TODO\]
+
+Verification of reliability is tricky. Though it is labour intensive, we will
+have to select a control group of users, view their history manually, decide if
+they are `reliable' or not, and then compare that to the score our classifier
+gives.
+
+Verification of behavior prediction is less tricky. We can simply use our models
+to predict the future behavior of old users, and then compare that to their
+actual trajectory.
+
 % subsubsection verification (end)
 
