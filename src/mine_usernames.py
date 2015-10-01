@@ -16,10 +16,10 @@ def main():
             # Save the username of the author.
             usernames.add(sub.author.name)
 
-            # Get the authors of comments.
-            for comment in sub.comments:
+            for comment in praw.helpers.flatten_tree(sub.comments):
                 # Put in try block to get around deleted or removed comments:
                 try:
+                    # Get the authors of comments.
                     usernames.add(comment.author.name)
                 except AttributeError:
                     pass
