@@ -1,4 +1,7 @@
 news
 worldnews
+politics
+worldpolitics
 technology
+science
 UIUC
