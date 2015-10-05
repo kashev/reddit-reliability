@@ -5,6 +5,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{csquotes}
 
 \title{Critique of Instagram Paper}
 \author{Kashev Dalmia, Ryan Freedman, Terence Nip \\
@@ -17,17 +18,89 @@
 \maketitle
 
 \section{Summary}
-This paper talked about the relevance of the Instagram in the context of social sensing. Given the context of the instagram as a new technology there exists great potential for it to be used as a sensing medium where, previously, no such thing existed. They explore the metadata associated with the information presented that was not previously available. This was more of a passive act leading to decreased friction in data generation. Because humans don't touch the data, odds are, that the data is more valid than conscious user generated data. 
+
+This paper talked about the relevance of the Instagram in the context of social
+sensing. Given the context of the Instagram as a new technology there exists
+great potential for it to be used as a sensing medium where, previously, no such
+thing existed. They explore the meta-data associated with the information
+presented that was not previously available. This was more of a passive act
+leading to decreased friction in data generation. Because humans don't touch the
+data, odds are, that the data is more valid than conscious user generated data.
+
+Furthermore, the researchers investigate the data and find some curious trends.
+For example, they discover a difference in the temporal posting behaviors of
+Brazilians compared to the rest of the world, and they discover a difference in
+the treatment of Instagram sharing compared to that of location sharing;
+specifically, people are more inclined to share their location `at breakfast',
+whereas there is no such spike in Instagram activity. They make attempts to
+explain these oddities in their data.
 
 \section{Critique}
 
-The first and most obvious critique of the paper is the presentation of the paper itself. The writing made it difficult to access the information presented. Overuse of certain words ('planetary' in particular) and a lack of proof-reading made the paper seem very disconnected (referring to Instagram as "The Instagram"). A related issue was a lack of consistency in their terminology particularly in their breakdown of location (see quadrants vs sectors). \\
-A second critique of the paper is that they had no purpose or motivation going in. The entrance of Instagram as a participatory sensing system, while important to catalogue, should not be the exclusive focus of a research paper.\\
-They purposefully attempt to obfuscate the contents of their paper despite the trivial nature its content.\\
-- Relies on tweeting instagram photos -> biased data. \\
-- Lack of understanding of the motivation of medium \\
+The first and most obvious critique of the paper is the presentation of the
+paper itself. The writing made it difficult to access the information presented.
+Overuse of certain words (`planetary' in particular) and a lack of proof-reading
+made the paper seem very disconnected (referring to Instagram as ``The
+Instagram''). A related issue was a lack of consistency in their terminology
+particularly in their breakdown of location (see quadrants vs. sectors), which
+made their particular insights difficult to grasp.
+
+A second critique of the paper is that they had no purpose or motivation going
+in. The entrance of Instagram as a participatory sensing system, while important
+to catalog, should not be the exclusive focus of a research paper. They found
+a data dump, and attempted to glean some insights from it, but on the whole
+didn't achieve much insight. They even made no attempt to discover the reason
+for some of the discrepancies in their data. For instance, they suggest that
+perhaps ``an unusual event may have happened on Tuesday that result in an
+abnormal number of shared photos'', but make no effort to discover what this
+might have been to give their claim grounds in reality.
+
+Part of their difficulty in gleaning human insight in the usage patterns of
+Instagram was their misunderstanding of the motivations of the usage of the
+platform. For instance, they state the following regarding Instagram as a PSN:
+\begin{displayquote}
+    If a particular application requires a more comprehensive coverage, it is
+    necessary to encourage users to participate in places they normally would
+    not. Micro- payments or scoring systems are examples of alternatives that
+    might work in this case.
+\end{displayquote}
+We disagree that either of these things might work. Instagram gained popularity
+by positioning itself as a platform for sharing high quality photos. People post
+photos that they fancy artistic, and it is unlikely that they will add content
+that they find unsuitable to their taste, no matter what the incentive. People
+want to post filtered pictures of their food. They do not want to post pictures
+of supermarkets. In a small interview about a study on ReadWrite
+(\texttt{\scriptsize\detokenize{
+http://readwrite.com/2012/03/14/study_why_do_people_use_instagram}}), Zachary
+McCune argues the same; people regard their Instagram feeds as streams of
+content curated by themselves, and do so for six main reasons: ``sharing,
+documentation, seeing, community, creativity and therapy''. We feel that it is
+shortsighted to think that people could be cajoled into using Instagram for pure
+sensing purposes if it does nothing to add to their carefully crafted social
+media persona.
+
+Finally, we take issue with the way that the data was collected. They state that
+they collected geotagged Instagram photos that were also cross-posted to
+Twitter. Though the Instagram app makes this sort of cross-posting simple and
+frictionless, the percentage of users who do this is certainly below 100\% and
+introduces some sort of bias in the usage patterns. Furthermore, if the
+researchers are tied to Twitter, why not choose pictures that were posted to
+Twitter with geotags, regardless of if they came from Instagram at all? They
+argue that this is the only way to find Instagram photos, but we disagree. A
+simple system which mines user names, and then searches for them for public
+photos, and then finds the geotagged ones, would provide a much more unbiased
+system for finding the photos than relying on Twitter.
 
 \section{Praise}
-- Good job exploring a new medium for social sensing. Set the ground work for future papers.
+
+Besides having extremely thorough references, the paper does a good job
+exploring a new medium for social sensing. These authors very likely set some
+ground work for future papers (it has been cited 22 times, according to Google
+Scholar.) Furthermore, their identification of Points of Interest, though given
+light treatment in the paper, was quite interesting. If given greater treatment,
+this, along with some analysis actual analysis of the photo itself, its tags,
+and comments, could lead to some interesting work in automatically recognizing
+events in the real world. We were disappointed that the authors stopped short of
+actually doing this work.
 
 \end{document}
