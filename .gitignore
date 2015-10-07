@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/latex
+# Created by https://www.gitignore.io/api/latex,python,linux
 
 ### LaTeX ###
 *.acn
@@ -37,7 +37,6 @@
 *.xdy
 *.tdo
 
-# Created by https://www.gitignore.io/api/python
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -98,4 +97,14 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+### Linux ###
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
 
