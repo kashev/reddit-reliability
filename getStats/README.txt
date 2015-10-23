@@ -5,6 +5,6 @@ needs:
 pickle & praw
 
 removing pickle "database":
-rm users.p && rm output_users.txt
+./remove_data.sh
 
 statistics will be stored in stats.txt file after running

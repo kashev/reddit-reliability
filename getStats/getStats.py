@@ -2,6 +2,9 @@ import sys
 import getopt
 import praw
 import time
+import csv
+import cPickle as pkl
+
 
 # How this file works:
 # Writes user information to output.txt and reads reliable users from file specified at run time
@@ -25,7 +28,7 @@ import time
 # removes all items in fileusers from users
 # if not in fileusers add to fileusers
 def remove_duplicates(inset,fileusers):
-	for u in inset:
+	for u in inset.copy():
 		if u not in fileusers:
 			fileusers.add(u)
 		else:
@@ -35,12 +38,14 @@ def remove_duplicates(inset,fileusers):
 def get_stats(users):
 	return
 
-
+def string_to_user(users):
+	
+	return
 
 def main(argv):
 	input_file='input.txt'
-	info_file='info.txt'
-	user_file = 'output_users.txt'
+	user_file='user_list.txt'
+	info_file = 'dictionaries.p'
 
 	# create files if they don't exist
 
@@ -69,33 +74,30 @@ def main(argv):
 	
 	# Query Reddit for remainder in inset
 	r = praw.Reddit(user_agent='Test Script by Ryan')
-	users = list()
+
+	# store new reddit information in pickle
+	f1 = open(info_file,'wb')
 	for user in inset:
 		time.sleep(2)
-		users.append(r.get_redditor(user.strip('\n')))
+		temp = r.get_redditor(user.strip('\n'))
+		pkl.dump(temp.__dict__,f1)
+	f1.close()
 
-	# get a full list of users
-	try:
-		su = open(info_file,"r+")
-	except IOError:
-		su = open(info_file,"a+")
-
-	stored_users = list(set(su))
-	for u in users:
-		stored_users.append(str(u.__dict__))
-	su.close()
-
-	# get statistics for the users we've gathered
-	get_stats(stored_users)
+	# load dictionaries from pickle
+	userdicts = list()
+	f2 = open(info_file,'r+b')
+	while 1:
+		try:
+			userdicts.append(pkl.load(f2))
+		except EOFError:
+			break
 
 	# write user objects to file
-	pd = open(info_file,"a+")
-	for u in users:
-		pd.write(str(u.__dict__))	
+
 	# write stored usernames to file
 	usernames = open(user_file,'a+')
 	for i in inset:
-		usernames.write(inset)
+		usernames.write(i)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
