@@ -35,7 +35,7 @@ def store_usernames(usernames):
     all_usernames = existing_usernames.union(usernames)
 
     with open('config/usernames.txt', 'w') as f:
-        for username in all_usernames:
+        for username in sorted(all_usernames):
             f.write('{}\n'.format(username))
 
 
@@ -55,5 +55,5 @@ def store_trusted_sources(usernames):
     all_sources = existing_sources.union(usernames)
 
     with open('config/trusted_sources.txt', 'w') as f:
-        for source in all_sources:
+        for source in sorted(all_sources):
             f.write('{}\n'.format(source))
