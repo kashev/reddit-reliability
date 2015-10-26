@@ -37,3 +37,23 @@ def store_usernames(usernames):
     with open('config/usernames.txt', 'w') as f:
         for username in all_usernames:
             f.write('{}\n'.format(username))
+
+
+def get_trusted_sources():
+    """ Return a set of usernames, loaded from file. """
+    with open('config/trusted_sources.txt', 'r') as f:
+        return set(line.strip() for line in f)
+
+
+def store_trusted_sources(usernames):
+    """ Write the set of usernames to file. Ensure that none are lost by merging
+        the input set with what's already in the file.
+    """
+    with open('config/trusted_sources.txt', 'r') as f:
+        existing_sources = set(line.strip() for line in f)
+
+    all_sources = existing_sources.union(usernames)
+
+    with open('config/trusted_sources.txt', 'w') as f:
+        for source in all_sources:
+            f.write('{}\n'.format(source))
