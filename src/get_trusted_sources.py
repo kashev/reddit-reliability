@@ -10,9 +10,19 @@ def main():
 
     sources = reddit_util.get_trusted_sources()
 
-    submissions = r.get_subreddit('news').get_hot()
-    for sub in submissions:
-        # Save the username of the author.
+    for sub in r.get_subreddit('news').get_hot():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_top():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_top_from_all():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_top_from_year():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_rising():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_controversial():
+        sources.add(sub.domain)
+    for sub in r.get_subreddit('news').get_controversial_from_all():
         sources.add(sub.domain)
 
     reddit_util.store_trusted_sources(sources)
