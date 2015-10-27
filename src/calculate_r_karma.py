@@ -3,13 +3,15 @@
 
 import praw
 import pprint
+
 import reddit_util
+import user_features
 
 
 def main():
     r = praw.Reddit(user_agent=reddit_util.get_user_agent())
 
-    usernames = reddit_util.get_usernames()
+    usernames = reddit_util.get_N_random_users(from_file=True)
 
     for user_name in usernames:
         print(user_name)
