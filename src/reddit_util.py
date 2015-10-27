@@ -40,14 +40,14 @@ def store_usernames(usernames):
 
 
 def get_trusted_sources():
-    """ Return a set of usernames, loaded from file. """
+    """ Return a set of trusted sources, loaded from file. """
     with open('config/trusted_sources.txt', 'r') as f:
         return set(line.strip() for line in f)
 
 
 def store_trusted_sources(usernames):
-    """ Write the set of usernames to file. Ensure that none are lost by merging
-        the input set with what's already in the file.
+    """ Write the set of trusted sources to file. Ensure that none are lost by
+        merging the input set with what's already in the file.
     """
     with open('config/trusted_sources.txt', 'r') as f:
         existing_sources = set(line.strip() for line in f)
