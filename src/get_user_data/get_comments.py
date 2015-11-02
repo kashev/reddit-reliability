@@ -30,7 +30,7 @@ def get_reddit_user_content():
 
     user_comments.create_index(
         [("data.id",pymongo.ASCENDING)],
-        background=True
+        background=True,
         unique=True,
         dropDups=True
     )
