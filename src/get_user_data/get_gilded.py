@@ -31,6 +31,8 @@ def get_reddit_user_content():
     user_posts.create_index(
         [("data.id",pymongo.ASCENDING)],
         background=True
+        unique=True,
+        dropDups=True
     )
 
     params = {
@@ -49,7 +51,10 @@ def get_reddit_user_content():
             r = reddit.api_get('user/' + user.strip() + '/gilded', params)
             if r != None:
                 for thing in r['data']['children']:
-                    user_posts.insert_one(thing)
+                    try:
+                        user_posts.insert_one(thing)
+                    except pymongo.errors.DuplicateKeyError:
+                        continue
                 if r['data']['after'] is None:
                     continueWithUser = False
                     break
