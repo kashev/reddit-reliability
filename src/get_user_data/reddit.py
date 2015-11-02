@@ -9,21 +9,23 @@ APP_SECRET = ''
 #
 # 30 requests/minute if NO AUTH
 # 60 requests/minute if AUTHED
-def api_get(endpoint):
+def api_get(endpoint, params):
     headers = {
         'user-agent': 'Python:edu.illinois.cs.redditReliability:v1.0 (by /u/goodusername)'
     }
 
+    r = None
     try:
         r = requests.get('https://api.reddit.com/' + endpoint, headers=headers)
 
         if (r.status_code == requests.codes.ok) :
-            time.sleep(2)
+            time.sleep(2.25)
             return r.json()
         else:
+            print r.reason
             r.raise_for_status()
     except:
-        print r.reason
+        return None
 
 
 def oauth_dance():
@@ -40,4 +42,4 @@ def get_usernames():
 
 def get_reddit_user_bios(user):
 
-    r = api_get('user/' + user + '/about')
+    r = api_get('user/' + user + '/about', {})
