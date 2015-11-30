@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage{csquotes}
 
-\title{Possible Attacks on Trucentive}
+\title{Possible Attacks on TruCentive Parking System}
 \author{Kashev Dalmia, Ryan Freedman, Terence Nip \\
         \textit{\{dalmia3, rtfreed2, nip2\}@illinois.edu}
        }
@@ -16,6 +16,15 @@
 \begin{document}
 
 \maketitle
+
+\section{Ideas}
+\label{sec:ideas}
+
+\begin{enumerate}
+    \item Regardless of if the client is assumed to be secure or not, one could periodically send bogus PA messages to the system to accrue the $D$ fixed reward for the spot. Ostensibly, one could do this twice a day and collect large amounts of unearned rewards even when $D$ is small.
+    \item One user with multiple accounts, or a team of malicious users, can repeatedly find, sell, and confirm parking spaces with each other when there is no actual parking space exchange happening. The simplest case involves two accounts repeatedly selling each other the same space back and forth. This attack works when the cost $N$ is less than $X + D$.
+\end{enumerate}
+
 
 
 \end{document}
