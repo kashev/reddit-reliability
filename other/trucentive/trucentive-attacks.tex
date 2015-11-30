@@ -17,14 +17,50 @@
 
 \maketitle
 
-\section{Ideas}
-\label{sec:ideas}
+\section{Attack 1: Reporting Bogus Spots}
+\label{sec:attack_1_reporting_bogus_spots}
+The first, most basic attack, that we thought of, was contributor abuse.
+Regardless of if the client is assumed to be secure or not, one could
+periodically send bogus PA messages to the system to accrue the $D$ fixed reward
+for the spot. Ostensibly, one could do this twice a day and collect large
+amounts of unearned rewards even when $D$ is small.
 
+Additionally, assuming clients can be spoofed, one could have multiple accounts
+to disguise this behavior, accumulating invalid, and possibly valid spots, by
+buying those spots from people in the TruCentive system. Multiple accounts
+across a geographic region could accumulate large amounts of TruCentive
+currency.
+
+\section{Attack 2: Getting A Refund in a Full Refund Market}
+\label{sec:attack_2_getting_a_refund_in_a_full_refund_market}
+In the special case in which the system gives full refunds, one can buy a spot,
+park there, but say that you did not get the spot. You have the spot, and it
+cost you nothing. Additionally, in theory, if you wait a sufficient amount of
+time, you can pretend that you have the spot, and sell it without incurring
+suspicion. Even in a non-full refund market, then you could buy the spot for
+less than normal.
+
+\section{Attack 3: Malicious Team of Attackers}
+\label{sec:attack_3_malicious_team_of_attackers}
+For this attack to work, $D + X > N$, which can be the case in the example in
+4.b of the TruCentive Paper. The same set of spots can be repeatedly bought and
+sold among the teams of attackers. Then, for each buy and sale of the accounts,
+each account earns $D + X - N$. Assuming this is greater than zero, then each
+account can earn money.
+
+
+\section{More Attacks: Special Cases}
+\label{sec:more_attacks_special_cases}
+
+Here are some more exotic, time consuming attacks that we thought of.
 \begin{enumerate}
-    \item Regardless of if the client is assumed to be secure or not, one could periodically send bogus PA messages to the system to accrue the $D$ fixed reward for the spot. Ostensibly, one could do this twice a day and collect large amounts of unearned rewards even when $D$ is small.
-    \item One user with multiple accounts, or a team of malicious users, can repeatedly find, sell, and confirm parking spaces with each other when there is no actual parking space exchange happening. The simplest case involves two accounts repeatedly selling each other the same space back and forth. This attack works when the cost $N$ is less than $X + D$.
+    \item \textbf{Permit Parking:} Sell a valid spot in an area or spot which is
+    open, but is a permit-only area (to which you have a permit). Get the car
+    towed, park there again, and then sell the spot over and over again. In
+    theory, one could even make enough money at scale to buy ones own tow truck
+    to expedite the process.
+    \item \textbf{Metered Lot:} If one owns a metered lot, then they can `sell'
+    the spaces on TruCentive, then charge them again for the spot via the meter.
 \end{enumerate}
-
-
 
 \end{document}
