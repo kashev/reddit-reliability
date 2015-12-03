@@ -3,27 +3,49 @@ import getopt
 import praw
 import time
 # gets statistics for user base and print
-def get_stats(users):
+def get_stats(users,filename):
 	avg_val = dict()
 	i = 0
+	# I know... it's horrendous. I could make a list of keys but... this is easier.
+	avg_val['link_karma'] = 0.0
+	avg_val['comment_karma'] = 0.0
+	avg_val['is_gold'] = 0.0
+	avg_val['is_mod'] = 0.0
+	avg_val['has_verified_email'] = 0.0
+	avg_val['created'] = 0.0
+
 	for user in users:
-		i = i+1
-		for key in user:
-			if i == 1:
-				print 'key: ',key,'\n'
-			if type(user[key]) is float or type(user[key]) is int:
-				try:
-					avg_val[key] += (user[key] + 0.0)/len(users)
-				except KeyError:
-					avg_val[key] = (user[key] + 0.0)/len(users)
-			elif type(user[key]) is bool:
-				try:
-					avg_val[key] += (user[key] + 0.0)/len(users)
-				except KeyError:
-					avg_val[key] = (user[key] + 0.0)/len(users)
-	for value in avg_val:
-		print value,': ', avg_val[value]
+		try:
+			i = i+1
+			avg_val['link_karma'] = user.link_karma + avg_val['link_karma']
+			avg_val['comment_karma'] = user.comment_karma + avg_val['comment_karma']
+			avg_val['is_gold'] = user.is_gold + avg_val['is_gold']
+			avg_val['is_mod'] = user.is_mod + avg_val['is_mod']
+			try:
+				avg_val['has_verified_email'] = user.has_verified_email + avg_val['has_verified_email']
+			except TypeError:
+				avg_val['has_verified_email'] = 0 + avg_val['has_verified_email']
+			avg_val['created'] = user.created + avg_val['created']
+		except:
+			print "Removing user at line ",i,"..."
+			# comment this out later, only for removing bad users (expired/archived) from a list
+			infile = open(filename,'r')
+			lines = infile.readlines()
+			infile.close()
+			if i > 0 and i < len(lines):
+				del lines[i-1]
+			
+			infile = open(filename,'w')
+			for line in lines:
+				infile.write(line)
+			infile.close()
+
+	for key in avg_val:
+		avg_val[key] = avg_val[key]/i
+		print key,': ', avg_val[key]
 	return avg_val
+
+
 
 
 def main(argv):
@@ -51,10 +73,9 @@ def main(argv):
 	r = praw.Reddit(user_agent='Test Script')
 	userlist = list() # list of dictionaries
 	for user in inset:
-		time.sleep(2)
-		userlist.append((r.get_redditor(user.strip('\n'))).__dict__)
+		userlist.append((r.get_redditor(user.strip('\n'))))
 
-	get_stats(userlist)
+	get_stats(userlist,input_file)
 
 if __name__ == "__main__":
 	main(sys.argv[1:])
