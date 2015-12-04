@@ -1,0 +1,11 @@
+news
+worldnews
+politics
+technology
+science
+Android
+nottheonion
+askscience
+askcomputerscience
+askengineers
+askhistorians
