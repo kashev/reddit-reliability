@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+## -*- coding: utf-8 -*-
+# reddit-reliability
+
 import pymongo
-import textstat
+from textstat.textstat import textstat
 from pymongo import MongoClient
 
 
@@ -9,14 +13,10 @@ def main():
     reddit_data = mongo_client.reddit_data
     user_data = reddit_data.user_data
     user_reading_level = reddit_data.user_reading_level
-
-    user_data.create_index(
-        [("name", pymongo.ASCENDING)],
-        background=True
-    )
+    user_comments = reddit_data.user_comments
 
     user_reading_level.create_index(
-        [("data.id", pymongo.ASCENDING)],
+        [("username", pymongo.ASCENDING)],
         background=True,
         unique=True,
         dropDups=True
@@ -24,40 +24,29 @@ def main():
 
     for user in user_data.find():
         name = user['data']['name']
+        print name
+        comment_list = []
+        for comment in user_comments.find({'data.author': name}):
+            if comment['kind'] == 't1':  # Actually a comment
+                comment_text = comment['data']['body']
+                comment_list.append(comment_text)
 
-        reading_level_data = {'name': name,
-                              'reading_level': 0}
-        user_reading_level.insert_one(reading_level_data)
+        comment_book = ' '.join(comment_list).strip()
+        try:
+            if len(comment_book) > 0:
+                reading_ease = textstat.flesch_reading_ease(comment_book)
+            else:
+                reading_ease = 0
+        except TypeError:  # I hate textstat
+            reading_ease = 0
 
-    # params = {
-    #     'sort': 'new',
-    #     't': 'all',
-    #     'limit': 100,
-    #     'sr_detail': True
-    # }
+        reading_level_data = {'username': name,
+                              'reading_level': reading_ease}
 
-    # usernames = util.get_usernames()
-
-    # for user in usernames:
-    #     print user
-    #     continueWithUser = True
-
-    #     while continueWithUser:
-    #         r = reddit.api_get('user/' + user.strip() + '/submitted', params)
-    #         if r != None:
-    #             for thing in r['data']['children']:
-    #                 try:
-    #                     user_comments.insert_one(thing)
-    #                 except pymongo.errors.DuplicateKeyError:
-    #                     continue
-    #             if r['data']['after'] is None:
-    #                 continueWithUser = False
-    #                 break
-    #             else:
-    #                 params['after'] = r['data']['after']
-    #         else:
-    #             continueWithUser = False
-
+        try:
+            user_reading_level.insert_one(reading_level_data)
+        except pymongo.errors.DuplicateKeyError:
+            continue
 
 if __name__ == '__main__':
     main()
