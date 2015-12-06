@@ -13,10 +13,10 @@ def get_stats(users,filename):
 	avg_val['is_mod'] = 0.0
 	avg_val['has_verified_email'] = 0.0
 	avg_val['created'] = 0.0
-
 	for user in users:
 		try:
 			i = i+1
+			print user.name,": ",user.comment_karma
 			avg_val['link_karma'] = user.link_karma + avg_val['link_karma']
 			avg_val['comment_karma'] = user.comment_karma + avg_val['comment_karma']
 			avg_val['is_gold'] = user.is_gold + avg_val['is_gold']
@@ -26,20 +26,8 @@ def get_stats(users,filename):
 			except TypeError:
 				avg_val['has_verified_email'] = 0 + avg_val['has_verified_email']
 			avg_val['created'] = user.created + avg_val['created']
-		except:
-			print "Removing user at line ",i,"..."
-			# comment this out later, only for removing bad users (expired/archived) from a list
-			infile = open(filename,'r')
-			lines = infile.readlines()
-			infile.close()
-			if i > 0 and i < len(lines):
-				del lines[i-1]
+		except praw.errors.NotFound:
 			
-			infile = open(filename,'w')
-			for line in lines:
-				infile.write(line)
-			infile.close()
-
 	for key in avg_val:
 		avg_val[key] = avg_val[key]/i
 		print key,': ', avg_val[key]
