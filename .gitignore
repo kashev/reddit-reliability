@@ -32,6 +32,7 @@
 *.run.xml
 *.snm
 *.synctex.gz
+*.synctex
 *.toc
 *.vrb
 *.xdy
@@ -117,7 +118,8 @@ target/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
