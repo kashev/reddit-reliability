@@ -13,8 +13,8 @@ def main():
                                '107.170.215.176:27017')
     reddit_data = mongo_client.reddit_data
     print(reddit_data.collection_names(include_system_collections=False))
-    post_karma_by_subreddit = reddit_data.post_karma_by_subreddit
-    important_karma_mongo = reddit_data.important_post_karma
+    comment_karma_by_subreddit = reddit_data.comment_karma_by_subreddit
+    important_karma_mongo = reddit_data.important_comment_karma
 
     important_karma_mongo.create_index(
         [("username", pymongo.ASCENDING)],
@@ -35,7 +35,7 @@ def main():
     top_10 = set([line.rstrip('\n') for line in
                   open('../config/top_10.txt')])
 
-    for user_mongo in post_karma_by_subreddit.find().sort('data.name', 1):
+    for user_mongo in comment_karma_by_subreddit.find().sort('data.name', 1):
         user_name = user_mongo['username']
         print(user_name)
 

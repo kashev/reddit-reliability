@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ## -*- coding: utf-8 -*-
 # reddit-reliability
-
+from __future__ import division
 import pymongo
 from pymongo import MongoClient
 

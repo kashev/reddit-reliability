@@ -1,0 +1,19 @@
+0.0 : number_comments_gilded
+0.0 : number_comments_gilded / number_comments
+2.05019591232e-05 : number_posts_gilded
+6.71894748638e-05 : number_posts_gilded / number_posts
+0.00106548298772 : top_10_post_karma / link_karma
+0.00109545877474 : swear_count / word_count
+0.00147182451442 : is_gold
+0.00230053247999 : trusted_post_karma / link_karma
+0.00575309943351 : reading_level
+0.00677811969231 : top_25_comment_karma / comment_karma
+0.00741438718557 : top_50_comment_karma / comment_karma
+0.00846150360855 : unique_words / word_count
+0.0151076845143 : top_25_post_karma / link_karma
+0.0153065332389 : top_10_comment_karma / comment_karma
+0.0183632139047 : trusted_comment_karma / comment_karma
+0.021226590716 : top_50_post_karma / link_karma
+0.0413482736928 : top_100_post_karma / link_karma
+0.05861677229 : time_created
+0.795602831533 : has_verified_email
