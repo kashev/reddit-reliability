@@ -5,7 +5,6 @@ import praw
 import pprint
 
 import reddit_util
-import user_features
 
 
 def main():

@@ -24,7 +24,7 @@ def main():
     for user in user_data.find():
         name = user['data']['name']
         print name
-        post_count = user_submitted.find({'data.author': name}).count()
+        post_count = user_submitted.count({'data.author': name})
         number_of_posts_doc = {'username': name,
                                'number_posts': post_count}
 

@@ -24,10 +24,8 @@ def main():
     for user in user_data.find():
         name = user['data']['name']
         print name
-        comment_count = 0
-        for comment in user_comments.find({'data.author': name}):
-            if comment['kind'] == 't1':  # Actually a comment
-                comment_count += 1
+        comment_count = user_comments.count({'data.author': name,
+                                             'kind': 't1'})
 
         number_of_comments_doc = {'username': name,
                                   'number_comments': comment_count}

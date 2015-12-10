@@ -4,12 +4,9 @@
 
 import argparse
 
-import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
 from sklearn.ensemble import RandomForestRegressor
-from matplotlib.ticker import FuncFormatter
 
 
 def train_model(num_trees):
