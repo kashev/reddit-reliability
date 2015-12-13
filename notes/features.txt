@@ -1,13 +1,13 @@
-[X] 1. % of posts that come from reputable sources
-[X] 2. Verified email - boolean - can we get this?
-[?] 3. % of posts that have a source at all
-[ ] 4. Average reading level of sentences used
-[ ] 5. Average post/comment karma from 'trusted' subreddits *per post*
-[X] 6. Total karma from 'trusted' subreddits
-[ ] 7. https://en.wikipedia.org/wiki/Sigmoid_function - weight post karma this way, compared to average karma on that day.
-[X] 8. Are you a moderator anywhere?
-[ ] 9. Times Gilded? Time Gilded?
-[X] 10. --Age of account-- Account creation time
-[ ] 11. Trophies
-[ ] 12. Created a Multireddit?
-[ ] 13.
+[ ] % of posts that come from reputable sources
+[X] Verified email - boolean
+[ ] % of posts that have a source at all
+[X] Average reading level of sentences used
+[ ] Average post/comment karma from 'trusted' subreddits *per post*
+[X] Total karma from 'trusted' subreddits
+[ ] https://en.wikipedia.org/wiki/Sigmoid_function - weight post karma this way, compared to average karma on that day.
+[ ] Are you a moderator anywhere?
+[ ] Times Gilded? Time Gilded?
+
+
+[ ] percent karma - top 10, 25, 50, 100
+[ ] post % in top... subreddits
