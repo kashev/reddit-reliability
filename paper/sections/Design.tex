@@ -6,7 +6,7 @@ Finally, we discuss some of the details of the implementation.
 \label{sub:gathering_reddit_usernames}
 
 The first limitation of the \reddit{} API is that usernames are an `open
-secret'. If one has the user name of an account, public information about that
+secret'. If one has the username of an account, public information about that
 account can be retrieved, but there is no way to directly get usernames.
 Instead, what we were forced to do was scrape the posts of popular subreddits
 and get the usernames of the author of every post and comment. In doing so, we
@@ -44,13 +44,13 @@ reliable users. Finding these users was trivial as the site rewards positive
 behavior through karma, which leads to increased visibility. From there the
 users could be filtered by their level of contribution manually. Moderators from
 various communities were also taken for their work in helping the community.
-These users were used in our training set for a +1 reliability score.
+These users were used in our training set for a reliability score $s_r = 1$.
 
 The second stage was to find users who were unreliable or detrimental to the
 community. Eventually, we discovered subreddits dedicated to weeding out users
 that didn't contribute and various posts that detailed accounts that were used
-to abuse the community. These were used as our training set for a -1 reliability
-score.
+to abuse the community. These were used as our training set for a reliability
+score $s_r = -1$.
 
 % subsection establishing_a_ground_truth (end)
 
@@ -63,11 +63,29 @@ this regression model without these features. So, we decided to pick a wide
 variety of features generated from the raw data, and figured out what was
 important later by looking at our results. Here, we present features which we
 suspected would be important. A discussion of what features were actually
-important is in \Cref{sec:Evaluation}.
+important is in \Cref{sec:evaluation}.
 
 \subsubsection{\reddit{} Karma and Derivatives} % (fold)
 \label{ssub:reddit_karma_and_derivatives}
-\[TODO\]
+
+The most important and useful feature of the \reddit{} platform is the fact that
+it has a built in voting system. We hypothesized that users whose posts and
+comments are well received would have positive correlation with that users
+reliability. However, not all content on \reddit{} is news-worthy. There are
+many, many subreddits in which there is everything from pets to porn. Thus, we
+established several sub-criteria in order to differentiate between karma earned
+by posting reliable news and karma earned by posting picture of cats.
+
+First, we broke down karma earned in the top 100, 50, 25, and 10 subreddits as
+reported by redditlist \cite{redditlist}. This way that users who participate
+mostly in small, niche subreddits would be somewhat penalized for not
+participating in `useful' subreddits. However, it is possible that one would
+want to know the reliability of users within a certain community. For the
+purposes of this project, we picked a small list of `trusted' subreddits, and
+picked good, reliable users from those communities as training examples. Then,
+the amount of karma accrued from those subreddits was another feature that we
+used.
+
 % subsubsection reddit_karma_and_derivatives (end)
 
 \subsubsection{\reddit{} Gold and Gilded Content} % (fold)
