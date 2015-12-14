@@ -29,7 +29,7 @@ train our classifier, and ignore non-participants.
 is not strictly enforced, but in order to be good citizens and as to not get our
 access revoked, we knew we had to design around this constraint. In order to
 speed up our ability to access user data (as well as change the features that we
-used; see \Cref{sub:picking_user_features}), we crawled user data and put the
+used; see \Cref{sub:feature_selection}), we crawled user data and put the
 raw, unmodified data into a MongoDB instance. This MongoDB served as a cache for
 the system. Not were we able to store raw data from \reddit{} API calls, we were
 also able to cache results from more computationally intensive features.
@@ -54,8 +54,8 @@ score $s_r = -1$.
 
 % subsection establishing_a_ground_truth (end)
 
-\subsection{Picking User Features: Exploratory Data Analysis} % (fold)
-\label{sub:picking_user_features}
+\subsection{Feature Selection} % (fold)
+\label{sub:feature_selection}
 
 Before having a trained regression model, there was no way to tell what
 characteristics of \reddit{} users would be important. However, one can't get
@@ -133,7 +133,7 @@ suspected might have some sort of correlation with reliability.
 
 % subsubsection natural_language_processing (end)
 
-% subsection picking_user_features (end)
+% subsection feature_selection (end)
 
 \input{tables/feature_table.tex}
 
