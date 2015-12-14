@@ -2,33 +2,34 @@ In this section, we show the design of our system. Additionally, we discuss some
 of the challenges, limitations, and design decisions that went into making it.
 Finally, we discuss some of the details of the implementation.
 
-\subsection{Gathering \reddit{} User Names} % (fold)
-\label{sub:gathering_reddit_user_names}
+\subsection{Gathering \reddit{} Usernames} % (fold)
+\label{sub:gathering_reddit_usernames}
 
-The first limitation of the \reddit{} API is that user names are an `open secret'.
-If one has the user name of an account, public information about that account
-can be retrieved, but there is no way to directly get user names. Instead, what
-we were forced to do was scrape the posts of popular Subreddits and get the user
-names of the author of every post and comment. In doing so, we were able to
-collect over 150K user names. Of the user names we collected, we randomly
-selected around 2K to fully gather data on and run our regression model on.
-\\
+The first limitation of the \reddit{} API is that usernames are an `open
+secret'. If one has the user name of an account, public information about that
+account can be retrieved, but there is no way to directly get usernames.
+Instead, what we were forced to do was scrape the posts of popular subreddits
+and get the usernames of the author of every post and comment. In doing so, we
+were able to collect over 150K usernames. Of the usernames we collected, we
+randomly selected around 2K to fully gather data on and run our regression model
+on.
+
 One issue with this approach is that this makes it impossible to identify non-
 participants. If a user never comments on a post, or posts a post themselves,
 there is no way to know that that user exists. This is unfortunately an
 insurmountable limitation. Instead, we chose only to find good and bad users to
 train our classifier, and ignore non-participants.
 
-% subsection gathering_reddit_user_names (end)
+% subsection gathering_reddit_usernames (end)
 
 \subsection{\reddit{} API Limits} % (fold)
 \label{sub:reddit_api_limits}
 
-\reddit{} has an API limit of 30 requests per minute. We discovered this limit is
-not strictly enforced, but in order to be good citizens and as to not get our
+\reddit{} has an API limit of 30 requests per minute. We discovered this limit
+is not strictly enforced, but in order to be good citizens and as to not get our
 access revoked, we knew we had to design around this constraint. In order to
 speed up our ability to access user data (as well as change the features that we
-used; see \Cref{sub:picking_user_features}, we crawled user data and put the
+used; see \Cref{sub:picking_user_features}), we crawled user data and put the
 raw, unmodified data into a MongoDB instance. This MongoDB served as a cache for
 the system. Not were we able to store raw data from \reddit{} API calls, we were
 also able to cache results from more computationally intensive features.
@@ -39,22 +40,46 @@ also able to cache results from more computationally intensive features.
 \label{sub:establishing_a_ground_truth}
 % will add more detail later. take a look at it, i wrote this at 2 am.
 Establishing ground truth was done in two stages. The first stage was to find
-reliable users. Finding these users was trivial as the site rewards positive behavior
-through karma, which leads to increased visibility. From there the users could
-be filtered by their level of contribution manually. Moderators from various
-communities were also taken for their work in helping the community. These users
-were used in our training set for a +1 reliability score. \\
-The second stage was to find users who were unreliable or detrimental to the community.
-Eventually, we discovered subreddits dedicated to weeding out users that didn't
-contribute and various posts that detailed accounts that were used to abuse the
-community. These were used as our training set for a -1 reliability score.
+reliable users. Finding these users was trivial as the site rewards positive
+behavior through karma, which leads to increased visibility. From there the
+users could be filtered by their level of contribution manually. Moderators from
+various communities were also taken for their work in helping the community.
+These users were used in our training set for a +1 reliability score.
+
+The second stage was to find users who were unreliable or detrimental to the
+community. Eventually, we discovered subreddits dedicated to weeding out users
+that didn't contribute and various posts that detailed accounts that were used
+to abuse the community. These were used as our training set for a -1 reliability
+score.
 
 % subsection establishing_a_ground_truth (end)
 
 \subsection{Picking User Features: Exploratory Data Analysis} % (fold)
 \label{sub:picking_user_features}
 
-\[ TODO \]
+Before having a trained regression model, there was no way to tell what
+characteristics of \reddit{} users would be important. However, one can't get
+this regression model without these features. So, we decided to pick a wide
+variety of features generated from the raw data, and figured out what was
+important later by looking at our results. Here, we present features which we
+suspected would be important. A discussion of what features were actually
+important is in \Cref{sec:Evaluation}.
+
+\subsubsection{\reddit{} Karma and Derivatives} % (fold)
+\label{ssub:reddit_karma_and_derivatives}
+\[TODO\]
+% subsubsection reddit_karma_and_derivatives (end)
+
+\subsubsection{\reddit{} Gold and Gilded Content} % (fold)
+\label{ssub:reddit_gold_and_gilded_content}
+\[TODO\]
+% subsubsection reddit_gold_and_gilded_content (end)
+
+
+\subsubsection{Natural Language Processing} % (fold)
+\label{ssub:natural_language_processing}
+\[TODO\]
+% subsubsection natural_language_processing (end)
 
 % subsection picking_user_features (end)
 
