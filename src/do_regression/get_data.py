@@ -106,6 +106,7 @@ def main():
         feature_vector.append(link_karma)
         feature_vector.append(number_posts_gilded)
         feature_vector.append(number_posts)
+        feature_vector.append(number_comments)
 
         try:
             feature_vector.append(link_karma / number_posts)
