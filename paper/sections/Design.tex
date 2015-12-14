@@ -108,7 +108,29 @@ money to reward.
 
 \subsubsection{Natural Language Processing} % (fold)
 \label{ssub:natural_language_processing}
-\[TODO\]
+
+Finally, we suspected that the actual writing patterns of reliable users would
+separate them from unreliable ones. Specifically, we tried three things that we
+suspected might have some sort of correlation with reliability.
+
+\begin{enumerate}
+    \item \textbf{Unique Word Percentage}: We suspected that users who were
+    reliable would use more unique words than those who were not.
+
+    \item \textbf{Readability}: We analyzed the Flesch--Kincaid readability
+    \cite{kincaid1975derivation} of the comments users posted, which can be
+    calculated using the formula in \Cref{eq:fk_eq}.
+
+    \begin{equation} \label{eq:fk_eq}
+        206.835 - 1.015 \left(\frac{\text{\tiny \# words}}{\text{\tiny \# sentences}}\right) - 84.6 \left(\frac{\text{\tiny \# syllables}}{\text{\tiny \# words}}\right)
+    \end{equation}
+
+    \item \textbf{Swearing Rate}: We took a list of `bad' words which Google
+    compiled \cite{googlebadwords}, and calculated the percentage of words that
+    users used in comments which appeared on that list.
+
+\end{enumerate}
+
 % subsubsection natural_language_processing (end)
 
 % subsection picking_user_features (end)
