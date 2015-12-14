@@ -1,0 +1,32 @@
+<<<<<<< HEAD
+\reddit{}, the self-proclaimed `frontpage of the internet`, is slowly becoming
+just that; many popular news sources, such as The New York Times and CNN, have
+begun to use \reddit{} as a primary source of information in an effort to
+leverage the power of the large numbers of users which gather and try to provide
+and cross-validate information others have gathered.
+=======
+\[TODO\]
+>>>>>>> a7db6e7da2f0574791478cbe65962aaccca99852
+
+In most cases, the information gathered is rather inoccuous. For example, a
+subset of \reddit{} users (or \textit{redditors}) gather information from
+popular news site and aggregate them on individual, topic-based forums (called
+\textit{subreddits}) like \texttt{r/news} or \texttt{r/worldnews}, subreddits
+for current events within the United States and the world, respectively.
+
+However, \reddit{}'s track record is not necessarily completely spotless when it
+comes to dispersing correct, cross-validated information. For example, during
+the Boston bombings of the Boston Marathon in April of 2013, \reddit{} falsely
+accused individuals of having been part of the bombings simply because of
+circumstantial evidence. Many news sites, including CNN, picked up the story and
+publicized it. However, it turned out that the individuals \reddit{} picked out
+were completely innocent and were only identified as being potentially involved
+because of circumstantial evidence (such as having been missing for long periods
+of time).\cite{Potts:2013:IRC:2507065.2507079}.
+
+\reddit{} is also noteworthy for allowing users to \textit{upvote} or
+\textit{downvote} user-submitted content, indicating either agreement/interest
+or disagreement/disinterest, respectively, with the material at hand. As a side
+effect of this, users ultimately promote material that they find to be
+interesting to them, and hide material that they find to be out of scope,
+irrelevant, or simply not interesting with respect to the subreddit they're in.\cite{Gilbert:2013:WUR:2441776.2441866}

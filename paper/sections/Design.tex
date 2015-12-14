@@ -11,7 +11,7 @@ account can be retrieved, but there is no way to directly get usernames.
 Instead, what we were forced to do was scrape the posts of popular subreddits
 and get the usernames of the author of every post and comment. In doing so, we
 were able to collect over 150K usernames. Of the usernames we collected, we
-randomly selected around 2K to fully gather data on and run our regression model
+randomly selected around 3K to fully gather data on and run our regression model
 on.
 
 One issue with this approach is that this makes it impossible to identify non-
@@ -25,14 +25,18 @@ train our classifier, and ignore non-participants.
 \subsection{\reddit{} API Limits} % (fold)
 \label{sub:reddit_api_limits}
 
-\reddit{} has an API limit of 30 requests per minute. We discovered this limit
-is not strictly enforced, but in order to be good citizens and as to not get our
-access revoked, we knew we had to design around this constraint. In order to
-speed up our ability to access user data (as well as change the features that we
-used; see \Cref{sub:feature_selection}), we crawled user data and put the
-raw, unmodified data into a MongoDB instance. This MongoDB served as a cache for
-the system. Not were we able to store raw data from \reddit{} API calls, we were
-also able to cache results from more computationally intensive features.
+\reddit{} has an API limit of 30 requests per minute when one hasn't authorized
+their script properly, and 60 requests per minute when authorized. Given our
+timeframe, we eschewed the authorization method and decided to go with the less
+time-efficient method of not authorizing our script. In gathering data, however,
+we discovered this limit is not strictly enforced, but in order to be good
+citizens and as to not get our access revoked, we knew we had to design around
+these constraints. As such, in order to both speed up our ability to access user
+data, dynamically change the features that we used (see
+\Cref{sub:feature_selection}), and reduce load on \reddit{}'s servers, we used a
+MongoDB instance to cache the data we were gathering. Not were we able to store
+raw data from \reddit{} API calls, we were also able to cache results from more
+computationally intensive features that we were generating.
 
 % subsection reddit_api_limits (end)
 
