@@ -1,3 +1,52 @@
-\lipsum[1]
+In this section, we show the design of our system. Additionally, we discuss some
+of the challenges, limitations, and design decisions that went into making it.
+Finally, we discuss some of the details of the implementation.
+
+\subsection{Gathering Reddit User Names} % (fold)
+\label{sub:gathering_reddit_user_names}
+
+The first limitation of the Reddit API is that user names are an `open secret'.
+If one has the user name of an account, public information about that account
+can be retrieved, but there is no way to directly get user names. Instead, what
+we were forced to do was scrape the posts of popular Subreddits and get the user
+names of the author of every post and comment. In doing so, we were able to
+collect over 150K user names. Of the user names we collected, we randomly
+selected around 2K to fully gather data on and run our regression model on.
+
+One issue with this approach is that this makes it impossible to identify non-
+participants. If a user never comments on a post, or posts a post themselves,
+there is no way to know that that user exists. This is unfortunately an
+insurmountable limitation. Instead, we chose only to find good and bad users to
+train our classifier, and ignore non-participants.
+
+% subsection gathering_reddit_user_names (end)
+
+\subsection{Reddit API Limits} % (fold)
+\label{sub:reddit_api_limits}
+
+Reddit has an API limit of 30 requests per minute. We discovered this limit is
+not strictly enforced, but in order to be good citizens and as to not get our
+access revoked, we knew we had to design around this constraint. In order to
+speed up our ability to access user data (as well as change the features that we
+used; see \Cref{sub:picking_user_features}, we crawled user data and put the
+raw, unmodified data into a MongoDB instance. This MongoDB served as a cache for
+the system. Not were we able to store raw data from Reddit API calls, we were
+also able to cache results from more computationally intensive features.
+
+% subsection reddit_api_limits (end)
+
+\subsection{Establishing A Ground Truth} % (fold)
+\label{sub:establishing_a_ground_truth}
+
+\[ TODO \]
+
+% subsection establishing_a_ground_truth (end)
+
+\subsection{Picking User Features: Exploratory Data Analysis} % (fold)
+\label{sub:picking_user_features}
+
+\[ TODO \]
+
+% subsection picking_user_features (end)
 
 \input{tables/feature_table.tex}
