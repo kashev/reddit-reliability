@@ -2,10 +2,10 @@ In this section, we show the design of our system. Additionally, we discuss some
 of the challenges, limitations, and design decisions that went into making it.
 Finally, we discuss some of the details of the implementation.
 
-\subsection{Gathering Reddit User Names} % (fold)
+\subsection{Gathering \reddit User Names} % (fold)
 \label{sub:gathering_reddit_user_names}
 
-The first limitation of the Reddit API is that user names are an `open secret'.
+The first limitation of the \reddit API is that user names are an `open secret'.
 If one has the user name of an account, public information about that account
 can be retrieved, but there is no way to directly get user names. Instead, what
 we were forced to do was scrape the posts of popular Subreddits and get the user
@@ -21,16 +21,16 @@ train our classifier, and ignore non-participants.
 
 % subsection gathering_reddit_user_names (end)
 
-\subsection{Reddit API Limits} % (fold)
+\subsection{\reddit API Limits} % (fold)
 \label{sub:reddit_api_limits}
 
-Reddit has an API limit of 30 requests per minute. We discovered this limit is
+\reddit has an API limit of 30 requests per minute. We discovered this limit is
 not strictly enforced, but in order to be good citizens and as to not get our
 access revoked, we knew we had to design around this constraint. In order to
 speed up our ability to access user data (as well as change the features that we
 used; see \Cref{sub:picking_user_features}, we crawled user data and put the
 raw, unmodified data into a MongoDB instance. This MongoDB served as a cache for
-the system. Not were we able to store raw data from Reddit API calls, we were
+the system. Not were we able to store raw data from \reddit API calls, we were
 also able to cache results from more computationally intensive features.
 
 % subsection reddit_api_limits (end)

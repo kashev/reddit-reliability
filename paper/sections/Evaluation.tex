@@ -1,25 +1,25 @@
 From our trained random forest regression model, we get a picture of the way
-that Redditors are. We get a glimpse of what useful, contributing Redditors look
-like, and what bad, non-contributing Redditors look like.
+that redditors are. We get a glimpse of what useful, contributing redditors look
+like, and what bad, non-contributing redditors look like.
 
-We collected data on around two thousand Redditors, and ran their data through
+We collected data on around two thousand redditors, and ran their data through
 our regressive model to get a reliability score $-1 \leq s_r \leq 1$. Then, we
 re-correlate this score with input features to intuitively see what features are
-important or not, and what features indicated useful and not-useful Redditors.
+important or not, and what features indicated useful and not-useful redditors.
 
 \[ TODO \]
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/data_2.png}
-    \caption{The distribution of the reliability score $s_r$ of the sampled Redditors, binned into two bins.}
+    \caption{The distribution of the reliability score $s_r$ of the sampled redditors, binned into two bins.}
     \label{fig:data_2}
 \end{figure}
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/data_20.png}
-    \caption{The distribution of the reliability score $s_r$ of the sampled Redditors, binned into twenty bins.}
+    \caption{The distribution of the reliability score $s_r$ of the sampled redditors, binned into twenty bins.}
     \label{fig:data_20}
 \end{figure}
 
@@ -33,21 +33,21 @@ important or not, and what features indicated useful and not-useful Redditors.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/reliability_post_count.png}
-    \caption{The reliability score $s_r$ plotted against the number posts the Redditor has made.}
+    \caption{The reliability score $s_r$ plotted against the number posts the redditor has made.}
     \label{fig:reliability_post_count}
 \end{figure}
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/reliability_comment_count.png}
-    \caption{The reliability score $s_r$ plotted against the number posts the Redditor has made.}
+    \caption{The reliability score $s_r$ plotted against the number posts the redditor has made.}
     \label{fig:reliability_comment_count}
 \end{figure}
 
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/reliability_post_karma.png}
-    \caption{The reliability score $s_r$ plotted against the average Karma per post the Redditor has made.}
+    \caption{The reliability score $s_r$ plotted against the average Karma per post the redditor has made.}
     \label{fig:reliability_post_karma}
 \end{figure}
 
@@ -61,6 +61,6 @@ important or not, and what features indicated useful and not-useful Redditors.
 \begin{figure}[tb]
     \centering
     \includegraphics[width=\linewidth]{figures/data_20_email.png}
-    \caption{The distribution of the reliability score $s_r$ of the sampled Redditors, binned into twenty bins, separated by if they have a verified email address or not.}
+    \caption{The distribution of the reliability score $s_r$ of the sampled redditors, binned into twenty bins, separated by if they have a verified email address or not.}
     \label{fig:data_20_email}
 \end{figure}
