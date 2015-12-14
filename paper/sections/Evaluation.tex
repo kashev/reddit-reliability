@@ -1,1 +1,53 @@
-\lipsum[1]
+From our trained random forest regression model, we get a picture of the way
+that Redditors are. We get a glimpse of what useful, contributing Redditors look
+like, and what bad, non-contributing Redditors look like.
+
+We collected data on around two thousand Redditors, and ran their data through
+our regressive model to get a reliability score $-1 \leq s_r \leq 1$. Then, we
+re-correlate this score with input features to intuitively see what features are
+important or not, and what features indicated useful and not-useful Redditors.
+
+\[ TODO \]
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/data_2.png}
+    \caption{The distribution of the reliability score $s_r$ of the sampled Redditors, binned into two bins.}
+    \label{fig:data_2}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/data_20.png}
+    \caption{The distribution of the reliability score $s_r$ of the sampled Redditors, binned into twenty bins.}
+    \label{fig:data_20}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/reliability_gilded.png}
+    \caption{The reliability score $s_r$ plotted against the percentage of gilded posts.}
+    \label{fig:reliability_gilded}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/reliability_post_count.png}
+    \caption{The reliability score $s_r$ plotted against the number posts the Redditor has made.}
+    \label{fig:reliability_post_count}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/reliability_post_karma.png}
+    \caption{The reliability score $s_r$ plotted against the average Karma per post the Redditor has made.}
+    \label{fig:reliability_post_karma}
+\end{figure}
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/reliability_readability.png}
+    \caption{The reliability score $s_r$ plotted against the Flesch--Kincaid readability of their comments.}
+    \label{fig:reliability_readability}
+\end{figure}
+
