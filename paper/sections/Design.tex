@@ -9,18 +9,19 @@ finer details of the system's implementation.
 
 The first limitation of the \reddit{} API is that usernames are an `open
 secret'. If one has the username of an account, public information about that
-account can be retrieved, but there is no way to directly get usernames.
-Instead, what we were forced to do was scrape the posts of popular subreddits
-and get the usernames of the author of every post and comment. In doing so, we
+account can be retrieved. However, there there is no way to directly get
+usernames.  Instead, one has to gather usernames by scraping posts of subreddits
+and getting the author's username of every post and comment. In doing so, we
 were able to collect over 150K usernames. Of the usernames we collected, we
 randomly selected around 3K to fully gather data on and run our regression model
 on.
 
 One issue with this approach is that this makes it impossible to identify non-
-participants. If a user never comments on a post, or posts a post themselves,
-there is no way to know that that user exists. This is unfortunately an
-insurmountable limitation. Instead, we chose only to find good and bad users to
-train our classifier, and ignore non-participants.
+participants. If a user neither never comments on a post, nor posts a post
+themselves, there is no way to know that that user exists. This is unfortunately
+an insurmountable limitation given the existing API. Instead, we chose only to
+find good and bad users who have demonstrated activity on \reddit{} to train our
+classifier, and ignore non-participants.
 
 % subsection gathering_reddit_usernames (end)
 
@@ -28,36 +29,38 @@ train our classifier, and ignore non-participants.
 \label{sub:reddit_api_limits}
 
 \reddit{} has an API limit of 30 requests per minute when one hasn't authorized
-their script properly, and 60 requests per minute when authorized. Given our
-timeframe, we eschewed the authorization method and decided to go with the less
+their script, and 60 requests per minute when authorized. Given our timeframe,
+we eschewed the authorization method and decided to go with the less
 time-efficient method of not authorizing our script. In gathering data, however,
-we discovered this limit is not strictly enforced, but in order to be good
-citizens and as to not get our access revoked, we knew we had to design around
-these constraints. As such, in order to both speed up our ability to access user
-data, dynamically change the features that we used (see
-\Cref{sub:feature_selection}), and reduce load on \reddit{}'s servers, we used a
-MongoDB instance to cache the data we were gathering. Not were we able to store
-raw data from \reddit{} API calls, we were also able to cache results from more
-computationally intensive features that we were generating.
+we discovered this limit is not strictly enforced. In order to be good citizens
+and gather the data we wanted whilst simultaneously working not get our access
+revoked, we knew we had to design around these constraints. As such, to both
+speed up our ability to access user data, dynamically change the features that
+we used (see \Cref{sub:feature_selection}), and reduce load on \reddit{}'s
+servers, we used a MongoDB instance to cache the data we were gathering. Not
+were we able to store raw data from \reddit{} API calls, we were also able to
+cache results from more computationally intensive features that we were
+generating.
 
 % subsection reddit_api_limits (end)
 
 \subsection{Establishing Ground Truth} % (fold)
 \label{sub:establishing_ground_truth}
 % will add more detail later. take a look at it, i wrote this at 2 am.
-Establishing ground truth was done in two stages. The first stage was to find
+Establishing ground truth was done in two stages, the first of which was to find
 reliable users. Finding these users was relatively trivial as the site rewards
-positive behavior through karma, which leads to increased visibility. From there
-the users could be filtered by their level of contribution manually. Moderators
-from various communities were also taken for their work in helping the
-community.  These users were used in our training set for a reliability score
-$s_r = 1$.
+positive behavior through karma, leading to increased visibility. From there,
+users could be filtered manually by their level of contribution. Moderators from
+various communities were also included in this set for their work in the
+\reddit{} community. These users were used in our training set and were given a
+reliability score of $s_r = 1$.
 
 The second stage was to find users who were unreliable or detrimental to the
-community. Eventually, we discovered subreddits dedicated to weeding out users
-that didn't contribute and various posts that detailed accounts that were used
-to abuse the community. These were used as our training set for a reliability
-score $s_r = -1$.
+community. Eventually, we discovered subreddits dedicated to contributing
+content to \reddit{} that was either not useful or not constructive in promoting
+\reddit{} as a reliable site, and numerous posts that suggested their authors
+were accounts used to abuse the community. These were also used as part of our
+training set, and were given a reliability score of $s_r = -1$.
 
 % subsection establishing_a_ground_truth (end)
 
