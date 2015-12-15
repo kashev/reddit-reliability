@@ -38,7 +38,11 @@ def train_model(num_trees):
 
     for bins in [2, 20, 200]:
         plt.figure()
-        plt.hist(predictions, bins, weights=weights)
+        n, b, patches = plt.hist(predictions, bins, weights=weights)
+
+        if bins == 2:
+            print n
+
         plt.xlabel('Reddit Reliability Score')
         plt.ylabel('Probability ({} bins)'.format(bins))
         plt.title('Reddit Reliability Score for {} Test Users'
@@ -88,7 +92,7 @@ def train_model(num_trees):
     plt.savefig('figs/reliability_comment_karma.png')
 
     plt.figure()
-    plt.scatter(predictions, test_input_matrix[:, 10])
+    plt.scatter(predictions, test_input_matrix[:, 11])
     plt.grid(True)
     plt.xlabel('Reddit Reliability Score')
     plt.ylabel('Gilded Percentage')
