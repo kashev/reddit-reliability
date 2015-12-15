@@ -78,24 +78,25 @@ important is in \Cref{sec:evaluation}.
 \subsubsection{\reddit{} Karma and Derivatives} % (fold)
 \label{ssub:reddit_karma_and_derivatives}
 
-The most important and useful feature of the \reddit{} platform is the fact that
-it has a built in voting system. We hypothesized that users whose posts and
-comments are well received would have positive correlation with that users
-reliability. However, not all content on \reddit{} is news-worthy. There are
-many, many subreddits in which there is everything from pets to porn. Thus, we
-established several sub-criteria in order to differentiate between karma earned
-by posting reliable news and karma earned by posting picture of cats.
+Perhaps the most important feature of the \reddit{} platform, and one of the
+reasons why \reddit{} is an incredibly relevant resource in today's changing
+news landscape is its built in voting system. We hypothesized that users whose
+posts and comments are well received would have positive correlation with that
+users reliability. However, not all content on \reddit{} is news-worthy. There
+are numerous subreddits in which the content is less than news-worthy,
+containing things like cat pictures and pornography, to name a few topics.. Thus,
+we established several sub-criteria in order to differentiate between karma
+earned by posting reliable news and karma earned by posting content that merely
+engaged the community's softer side, such as by posting picture of cats.
 
-First, we broke down karma earned in the top 100, 50, 25, and 10 subreddits as
-reported by redditlist \cite{redditlist}. This way that users who participate
-mostly in small, niche subreddits would be somewhat penalized for not
-participating in `useful' subreddits. However, it is possible that one would
-want to know the reliability of users within a certain community. For the
-purposes of this project, we picked a small list of `trusted' subreddits, and
-picked good, reliable users from those communities as training examples. Then,
-the amount of karma accrued from those subreddits was another feature that we
-used.
-
+We broke down a user's net karma into karma earned in the top 100, 50, 25, and
+10 subreddits as reported by redditlist \cite{redditlist}. This way, users who
+participate mostly in small, niche subreddits would be somewhat penalized for
+not participating in more mainstream, `useful' subreddits as part of a measure
+of "impactfulness". For the purposes of this project, we picked a small list of
+`trusted' subreddits, and picked good, reliable users from those communities as
+training examples, and used a users' net karma from the top $n$ subreddits as
+features in our classifier.
 % subsubsection reddit_karma_and_derivatives (end)
 
 \subsubsection{\reddit{} Gold and Gilded Content} % (fold)
@@ -103,15 +104,22 @@ used.
 
 Another interesting feature of \reddit{} which differentiates it from other
 social networks is \reddit{} gold. \reddit{} gold is a premium membership which
-users may pay for, and comes with many perks, like an ad-free experience, a
-members only subreddit, deals from partner companies, and more
-\cite{redditgold}. What makes \reddit{}'s gold program so unique is that users
-are encouraged not only to buy this for themselves, but also to give \reddit{}
-gold membership as a gift to other users who produce content that they enjoy.
-Furthermore, this content is marked as `gilded', and can be tracked. We
-suspected that this action would be extremely important in determining reliable
-content, and only content which was reliable would be worth a user spending real
-money to reward.
+users may pay for. It comes with many perks, such as ad-free experience, a
+members-only subreddit, and deals from partner companies, amongst a number of
+other benefits \cite{redditgold}. What makes \reddit{}'s gold program so unique,
+however, is that users are encouraged not only to buy it for themselves, but
+also to give \reddit{} gold membership as a gift to other users who produce
+content that they enjoy.
+
+Content that motivates users to purchase \reddit{} gold for others is marked as
+being `gilded', and is marked as being such. This action can be done numerous
+times for any particular piece of content submitted/posted to \reddit{}, to the
+point where a post can be gilded upwards of five or six times within the span of
+a few hours. Given the impactfulness and meaning behind a user's being given
+\reddit{} gold, we suspected that this action would be extremely important in
+determining reliable content in that content which was reliable or incredibly
+enjoyable/not detrimental to the well-being of the site would be worth a user
+spending real money to reward.
 
 % subsubsection reddit_gold_and_gilded_content (end)
 
@@ -120,24 +128,24 @@ money to reward.
 \label{ssub:natural_language_processing}
 
 Finally, we suspected that the actual writing patterns of reliable users would
-separate them from unreliable ones. Specifically, we tried three things that we
-suspected might have some sort of correlation with reliability.
+separate them from unreliable ones. Specifically, we looked at three metrics that we
+suspected might correlate with a user's reliability.
 
 \begin{enumerate}
     \item \textbf{Unique Word Percentage}: We suspected that users who were
-    reliable would use more unique words than those who were not.
+      reliable would use more unique words than those who were not.
 
     \item \textbf{Readability}: We analyzed the Flesch--Kincaid readability
-    \cite{kincaid1975derivation} of the comments users posted, which can be
-    calculated using the formula in \Cref{eq:fk_eq}.
+      \cite{kincaid1975derivation} score of the comments users posted, which can
+      be calculated using the formula in \Cref{eq:fk_eq}.
 
     \begin{equation} \label{eq:fk_eq}
         206.835 - 1.015 \left(\frac{\text{\tiny \# words}}{\text{\tiny \# sentences}}\right) - 84.6 \left(\frac{\text{\tiny \# syllables}}{\text{\tiny \# words}}\right)
     \end{equation}
 
     \item \textbf{Swearing Rate}: We took a list of `bad' words which Google
-    compiled \cite{googlebadwords}, and calculated the percentage of words that
-    users used in comments which appeared on that list.
+      compiled \cite{googlebadwords}, and calculated the percentage of those
+      words that users used in comments.
 
 \end{enumerate}
 
@@ -157,6 +165,6 @@ insights from the model generated.
 Ultimately, random forests \cite{598994} was chosen based on the notion that the
 results were more interpretable than other popular modeling algorithms such as
 neural networks, and would provide greater reliability than just a simple
-decision tree given that random forests has boosting built in.
+decision tree.
 
 % subsection picking_a_regression_model (end)
