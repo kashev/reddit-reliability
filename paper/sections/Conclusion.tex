@@ -2,7 +2,39 @@
 \subsection{Future Work} % (fold)
 \label{sub:future_work}
 
-Something something many weaknesses
+\subsubsection{Weaknesses}
+Given the relatively unexplored landscape and the restrictions of the \reddit{}
+API, there exist many weaknesses in our analysis of \reddit{}.
+
+First and foremost, a larger pool of users need to be analysed in order to get a
+better, more complete picture of what \reddit{} is truly like. 3,200 users is an
+incredibly small subset of the number of users \reddit{} has, and does not paint
+a full picture of how reliable the site is as a whole. A less biased pool of
+users would also be beneficial in trying to come up with a more robust model; in
+training, we artificially took our data and converted it from its natural bias
+of roughly 90% unreliable users into a 50% bias in order to allow our model to
+actually learn useful features. Having access to a pool of usernames that were
+deemed as being active and reliable would have helped immensely in decreasing
+the inherent bias and in turn, would have accelerated the data
+gathering/analysis process.
+
+Secondly, more signals could be included in our classifier. Due to time
+constraints, there were features we would have liked to add into our classifier
+that we were unable to include, such as a temporal analysis of a user's
+reliability factoring into how reliable they may be at any given time. It is
+also worth noting that the data we have is solely limited to what \reddit{}
+provides openly, and the model we have could be made more robust if greater
+access to data (such as subreddit subscriptions, etc) were provided.
+
+Third, the training dataset was created rather subjectively instead of being
+created/scored by numerous individuals blindly. Given sufficient resources, the
+training dataset would have ideally been created via the use of Amazon
+Mechanical Turk, allowing for the crowdsourcing (and inherent cross-validation)
+of the training dataset. It also would allow us to have a test set to work off
+of, which we unfortunately did not have the resources to generate given the
+difficulty involved in generating a set of reliable users.
+
+\subsubsection{Conclusion}
 
 Given the set of users we have obtained in conjunction with the variability that
 exists among the various subsets of reddit users there exists weaknesses in our
