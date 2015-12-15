@@ -1,8 +1,6 @@
 \[TODO\]
-\subsection{Future Work} % (fold)
-\label{sub:future_work}
-
-\subsubsection{Weaknesses}
+\subsection{Weaknesses}
+\label{sub:weaknesses}
 Given the relatively unexplored landscape and the restrictions of the \reddit{}
 API, there exist many weaknesses in our analysis of \reddit{}.
 
@@ -47,16 +45,30 @@ Something something exploratory/first exploration of field
 
 something something Apollo \cite{Le:2011:DDL:2070942.2071018}.
 
-\[TODO\]
+% subsection weaknesses (end)
 
-% subsection future_work (end)
+\subsection{Future Work} % (fold)
+\label{sub:future_work}
+In addition to addressing the weaknesses presented previously, there exists
+quite a bit of future work that can be tackled.
 
+To begin, the problem of establishing ground truth is a rather difficult one,
+and is one that we decided not to take on given the time constraints placed upon
+us. There is no objective way to establish ground truth, and the level of
+subjectivity required in establishing it would require not only greater temporal
+resources, but also financial resources that we do not possess. Given that users
+can be constructive and reliable in different ways, we chose perhaps the most
+obvious route of identifying reliability, but there are more nuanced senses of
+reliability that would help identify users as being reliable despite not being
+"mainstream".
 
-\subsection{Open Issues} % (fold)
-\label{sub:open_issues}
+The problem of voting on \reddit{} is also an open issue; redditors not only
+vote because the content is important and reliable, but also because the content
+is personally interesting to them. This means that it may be the case that an up
+and coming, incredibly important news article submitted to \texttt{r/news} may
+have the same amount of karma and be gilded the same way as a cute cat picture
+on \texttt{r/aww}. Identifying the differences between these different types of
+karma and finding a proper measurement/way to include them in our measurement of
+reliability is rather important, and should be addressed in the future.
 
-Something something hard to establish ground truth
-
-Voting on reddit will always be somewhat ambiguous
-
-% subsection open_issues (end)
+% subsection future work(end)
