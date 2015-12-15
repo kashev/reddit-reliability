@@ -60,12 +60,13 @@ obvious route of identifying reliability, but there are more nuanced senses of
 reliability that would help identify users as being reliable despite not being
 ``mainstream''.
 
-Another data collection issue was the API caps requests to one thousand. So,
-for instance, when we queried for the comments from each user we only received
-the most recent thousand which proved to be an issue for \"power users\" who have
-well over one thousand comments. This problem could be resolved by re-issuing
-requests for users in order to receive all comments and posts. However, it would
-greatly increase the runtime for analysis and data gathering.
+Another data collection issue encountered was that the \reddit{} API caps
+requests to one thousand results. So, for instance, when queried for the
+comments from each user, the API only returns the most recent thousand comments,
+which proved to be an issue for ``power users'' who have well over one thousand
+comments. This problem could be resolved by re-issuing requests for users in
+order to receive all comments and posts. However, it would greatly increase the
+runtime for analysis and data gathering.
 
 The problem of voting on \reddit{} is also an open issue; redditors not only
 vote because the content is important and reliable, but also because the content
