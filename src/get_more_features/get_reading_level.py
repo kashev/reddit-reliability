@@ -22,7 +22,7 @@ def main():
         dropDups=True
     )
 
-    for user in user_data.find():
+    for user in user_data.find().sort('data.name', 1):
         name = user['data']['name']
         print name
         comment_list = []

@@ -24,7 +24,7 @@ def main():
         dropDups=True
     )
 
-    for user_mongo in user_data.find():
+    for user_mongo in user_data.find().sort('data.name', 1):
         user_name = user_mongo['data']['name']
         print(user_name)
 

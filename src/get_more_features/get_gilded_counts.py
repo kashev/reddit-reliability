@@ -22,7 +22,7 @@ def main():
         dropDups=True
     )
 
-    for user in user_data.find():
+    for user in user_data.find().sort('data.name', 1):
         name = user['data']['name']
         print name
 
@@ -34,8 +34,8 @@ def main():
                          'data.gilded': 1,
                          'kind': 't1'}
 
-        post_count = user_submitted.find(post_query).count()
-        comment_count = user_comments.find(comment_query).count()
+        post_count = user_submitted.count(post_query)
+        comment_count = user_comments.count(comment_query)
         gilded_doc = {'username': name,
                       'number_posts': post_count,
                       'number_comments': comment_count}
@@ -44,6 +44,7 @@ def main():
             gilded_count.insert_one(gilded_doc)
         except pymongo.errors.DuplicateKeyError:
             continue
+
 
 if __name__ == '__main__':
     main()
