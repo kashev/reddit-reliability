@@ -1,4 +1,6 @@
-\[TODO\]
+In this section, we discuss some weaknesses in our project and discuss future
+improvements that may be made.
+
 \subsection{Weaknesses}
 \label{sub:weaknesses}
 Given the relatively unexplored landscape and the restrictions of the \reddit{}
@@ -10,7 +12,7 @@ incredibly small subset of the number of users \reddit{} has, and does not paint
 a full picture of how reliable the site is as a whole. A less biased pool of
 users would also be beneficial in trying to come up with a more robust model; in
 training, we artificially took our data and converted it from its natural bias
-of roughly 90% unreliable users into a 50% bias in order to allow our model to
+of roughly 90\% unreliable users into a 50\% bias in order to allow our model to
 actually learn useful features. Having access to a pool of usernames that were
 deemed as being active and reliable would have helped immensely in decreasing
 the inherent bias and in turn, would have accelerated the data
@@ -41,10 +43,6 @@ increasing reliance of individuals on reddit as a source of reliable information
 our contribution noteworthy for the purpose of exploration with respect to
 reddit as an up-and-coming source of information.
 
-Something something exploratory/first exploration of field
-
-something something Apollo \cite{Le:2011:DDL:2070942.2071018}.
-
 % subsection weaknesses (end)
 
 \subsection{Future Work} % (fold)
@@ -60,7 +58,7 @@ resources, but also financial resources that we do not possess. Given that users
 can be constructive and reliable in different ways, we chose perhaps the most
 obvious route of identifying reliability, but there are more nuanced senses of
 reliability that would help identify users as being reliable despite not being
-"mainstream".
+``mainstream''.
 
 The problem of voting on \reddit{} is also an open issue; redditors not only
 vote because the content is important and reliable, but also because the content
@@ -70,5 +68,10 @@ have the same amount of karma and be gilded the same way as a cute cat picture
 on \texttt{r/aww}. Identifying the differences between these different types of
 karma and finding a proper measurement/way to include them in our measurement of
 reliability is rather important, and should be addressed in the future.
+
+Finally, building a more robust system to do a lot of the work that we did
+manually, and then extract likely true events from \reddit{}, would be extremely
+useful. Work like this has been done for other real-time social networks like
+Twitter and Instagram in Apollo \cite{Le:2011:DDL:2070942.2071018}.
 
 % subsection future work(end)
