@@ -88,7 +88,7 @@ def train_model(num_trees):
     plt.savefig('figs/reliability_comment_karma.png')
 
     plt.figure()
-    plt.scatter(predictions, test_input_matrix[:, 9])
+    plt.scatter(predictions, test_input_matrix[:, 10])
     plt.grid(True)
     plt.xlabel('Reddit Reliability Score')
     plt.ylabel('Gilded Percentage')
@@ -110,6 +110,24 @@ def train_model(num_trees):
     plt.ylabel('Comment Count')
     plt.title('Reliability vs Comment Count')
     plt.savefig('figs/reliability_comment_count.png')
+
+    plt.figure()
+    plt.scatter(predictions, test_input_matrix[:, 10])
+    plt.grid(True)
+    plt.ylim(0, 5000)
+    plt.xlabel('Reddit Reliability Score')
+    plt.ylabel('Average Karma per Post')
+    plt.title('Reliability vs Average Karma per Post')
+    plt.savefig('figs/reliability_avg_post_karma.png')
+
+    plt.figure()
+    plt.scatter(predictions, test_input_matrix[:, 12])
+    plt.grid(True)
+    plt.ylim(0, 5000)
+    plt.xlabel('Reddit Reliability Score')
+    plt.ylabel('Average Karma per Comment')
+    plt.title('Reliability vs Average Karma per Comment')
+    plt.savefig('figs/reliability_avg_comment_karma.png')
 
     scores_yes_email = predictions[test_input_matrix[:, 1].astype(bool)]
     scores_no_email = predictions[np.logical_not(
