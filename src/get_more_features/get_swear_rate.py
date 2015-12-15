@@ -32,7 +32,7 @@ def main():
     for line in lines:
         bad_words.add(line)
 
-    for user in user_data.find().sort('data.name', 1):
+    for user in user_data.find(no_cursor_timeout=True).sort('data.name', 1):
         name = user['data']['name']
         print name
         comment_list = []

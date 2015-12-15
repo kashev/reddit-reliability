@@ -35,7 +35,8 @@ def main():
     top_10 = set([line.rstrip('\n') for line in
                   open('../config/top_10.txt')])
 
-    for user_mongo in comment_karma_by_subreddit.find().sort('data.name', 1):
+    for user_mongo in (comment_karma_by_subreddit.find(no_cursor_timeout=True)
+                                                 .sort('data.name', 1)):
         user_name = user_mongo['username']
         print(user_name)
 
