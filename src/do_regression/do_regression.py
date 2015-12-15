@@ -17,64 +17,12 @@ def train_model(num_trees):
     training_output_vector = np.load("data/training_output_vector.npy")
     test_usernames = np.load("data/test_usernames.npy")
     test_input_matrix = np.load("data/test_input_matrix.npy")
+    feature_names = np.load("data/feature_docs.npy")
+    for feature, idx in zip(feature_names, range(len(feature_names))):
+        print idx, feature
 
-    features_to_use = np.array([
-        0,   # is_gold
-        1,   # has_verified_email
-        2,   # time_created
-        3,   # reading_level
-        4,   # link_karma
-        5,   # number_posts_gilded
-        6,   # number_posts
-        7,   # number_comments
-        8,   # link_karma / number_posts
-        9,   # number_posts_gilded / number_posts
-        10,  # comment_karma
-        11,  # number_comments_gilded
-        12,  # comment_karma / number_comments
-        13,  # number_comments_gilded / number_comments
-        14,  # trusted_post_karma / link_karma
-        15,  # top_100_post_karma / link_karma
-        16,  # top_50_post_karma / link_karma
-        17,  # top_25_post_karma / link_karma
-        18,  # top_10_post_karma / link_karma
-        19,  # trusted_comment_karma / comment_karma
-        20,  # top_100_comment_karma / comment_karma
-        21,  # top_50_comment_karma / comment_karma
-        22,  # top_25_comment_karma / comment_karma
-        23,  # top_10_comment_karma / comment_karma
-        24,  # swear_count / word_count
-        25,  # unique_words / word_count
-    ])
-
-    feature_names = np.array([
-        "Is Reddit Gold",
-        "Has Verified Email",
-        "Time Account Created",
-        "Flesch--Kincaid Readability of Comments",
-        "Link Karma",
-        "Number of Gilded Posts",
-        "Number of Total Posts",
-        "Number of Total Comments",
-        "Average Karma per Post",
-        "\\% of Posts Gilded",
-        "Comment Karma",
-        "Number of Gilded Comments",
-        "Average Comment Karma per Comment",
-        "\\% of Comments Gilded",
-        "\\% of Post Karma - Trusted Subreddits",
-        "\\% of Post Karma - Top 100 Subreddits",
-        "\\% of Post Karma - Top 50 Subreddits",
-        "\\% of Post Karma - Top 25 Subreddits",
-        "\\% of Post Karma - Top 10 Subreddits",
-        "\\% of Comment Karma - Trusted Subreddits",
-        "\\% of Comment Karma - Top 100 Subreddits",
-        "\\% of Comment Karma - Top 50 Subreddits",
-        "\\% of Comment Karma - Top 25 Subreddits",
-        "\\% of Comment Karma - Top 10 Subreddits",
-        "\\% of Swear Words Used in Comments",
-        "Unique Words / Total Number Words",
-    ])
+    # Gives the ability to turn features off.
+    features_to_use = np.arange(len(feature_names))
 
     assert(len(feature_names) == len(features_to_use))
 
@@ -122,17 +70,22 @@ def train_model(num_trees):
     plt.savefig('figs/reliability_readability.png')
 
     plt.figure()
-    normed_karma = test_input_matrix[:, 4]
-    for i in range(len(normed_karma)):
-        if normed_karma[i] > 10000:
-            normed_karma[i] = 0
-    plt.scatter(predictions, normed_karma)
-    plt.ylim(0, 10000)
+    plt.scatter(predictions, test_input_matrix[:, 4])
+    plt.ylim(0, 20000)
     plt.grid(True)
     plt.xlabel('Reddit Reliability Score')
     plt.ylabel('Post Karma')
-    plt.title('Reliability vs Karma')
+    plt.title('Reliability vs Post Karma')
     plt.savefig('figs/reliability_post_karma.png')
+
+    plt.figure()
+    plt.scatter(predictions, test_input_matrix[:, 5])
+    plt.ylim(0, 200000)
+    plt.grid(True)
+    plt.xlabel('Reddit Reliability Score')
+    plt.ylabel('Comment Karma')
+    plt.title('Reliability vs Comment Karma')
+    plt.savefig('figs/reliability_comment_karma.png')
 
     plt.figure()
     plt.scatter(predictions, test_input_matrix[:, 9])
@@ -182,7 +135,7 @@ def main():
     parser = argparse.ArgumentParser(
         description=("Feature Correspondence Compute for Reddit"))
 
-    parser.add_argument("-n", "--num_trees", type=int, default=1000,
+    parser.add_argument("-n", "--num_trees", type=int, default=5000,
                         help="Specify number of decision trees in forest")
     args = parser.parse_args()
 

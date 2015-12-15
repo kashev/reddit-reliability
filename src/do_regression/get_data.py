@@ -5,8 +5,11 @@
 # http://scikit-learn.org/stable/modules/tree.html#classification
 
 from __future__ import division
+
 from pymongo import MongoClient
 import numpy as np
+
+from feature_vector import FeatureVector
 
 
 def main():
@@ -35,11 +38,13 @@ def main():
     test_usernames = []
     test_input_matrix = []
 
+    save_docs = True
+
     for user_mongo in reddit_data.user_data.find().sort('data.name', 1):
         user_name = user_mongo['data']['name']
         print(user_name)
 
-        feature_vector = []
+        fv = FeatureVector(save_docs)
 
         link_karma = user_mongo['data']['link_karma']
         comment_karma = user_mongo['data']['comment_karma']
@@ -97,67 +102,125 @@ def main():
         top_25_comment_karma = res['top_25_karma']
         top_10_comment_karma = res['top_10_karma']
 
-        # Append features
-        feature_vector.append(is_gold)
-        feature_vector.append(has_verified_email)
-        feature_vector.append(time_created)
-        feature_vector.append(reading_level)
+        # Append features.
+        fv.append(is_gold, "Is Reddit Gold")
+        fv.append(has_verified_email, "Has Verified Email")
+        fv.append(time_created, "Time Account Created")
+        fv.append(reading_level, "Flesch--Kincaid Readability of Comments")
 
-        feature_vector.append(link_karma)
-        feature_vector.append(number_posts_gilded)
-        feature_vector.append(number_posts)
-        feature_vector.append(number_comments)
+        fv.append(link_karma, "Link Karma")
+        fv.append(comment_karma, "Comment Karma")
 
-        try:
-            feature_vector.append(link_karma / number_posts)
-            feature_vector.append(number_posts_gilded / number_posts)
-        except ZeroDivisionError:
-            feature_vector.extend([0] * 2)
+        fv.append(number_posts, "Total Number of Posts")
+        fv.append(number_comments, "Total Number of Comments")
 
-        feature_vector.append(comment_karma)
-        feature_vector.append(number_comments_gilded)
+        fv.append(number_posts_gilded, "Number of Gilded Posts")
+        fv.append(number_comments_gilded, "Number of Gilded Comments")
 
         try:
-            feature_vector.append(comment_karma / number_comments)
-            feature_vector.append(number_comments_gilded / number_comments)
+            average_karma_per_post = link_karma / number_posts
+            percentage_gilded_posts = number_posts_gilded / number_posts
         except ZeroDivisionError:
-            feature_vector.extend([0] * 2)
-        try:
-            feature_vector.append(trusted_post_karma / link_karma)
-            feature_vector.append(top_100_post_karma / link_karma)
-            feature_vector.append(top_50_post_karma / link_karma)
-            feature_vector.append(top_25_post_karma / link_karma)
-            feature_vector.append(top_10_post_karma / link_karma)
-        except ZeroDivisionError:
-            feature_vector.extend([0] * 5)
+            average_karma_per_post = 0
+            percentage_gilded_posts = 0
+
+        fv.append(average_karma_per_post, "Average Karma per Post")
+        fv.append(percentage_gilded_posts, "\\% of Posts Gilded")
 
         try:
-            feature_vector.append(trusted_comment_karma / comment_karma)
-            feature_vector.append(top_100_comment_karma / comment_karma)
-            feature_vector.append(top_50_comment_karma / comment_karma)
-            feature_vector.append(top_25_comment_karma / comment_karma)
-            feature_vector.append(top_10_comment_karma / comment_karma)
+            average_karma_per_comment = comment_karma / number_comments
+            percentage_gilded_comments = (number_comments_gilded /
+                                          number_comments)
         except ZeroDivisionError:
-            feature_vector.extend([0] * 5)
+            average_karma_per_comment = 0
+            percentage_gilded_comments = 0
+
+        fv.append(average_karma_per_comment,
+                  "Average Comment Karma per Comment")
+        fv.append(percentage_gilded_comments,
+                  "\\% of Comments Gilded")
 
         try:
-            feature_vector.append(swear_count / word_count)
-            feature_vector.append(unique_words / word_count)
+            percentage_trusted_post_karma = (trusted_post_karma / link_karma)
+            percentage_top_100_post_karma = (top_100_post_karma / link_karma)
+            percentage_top_50_post_karma = (top_50_post_karma / link_karma)
+            percentage_top_25_post_karma = (top_25_post_karma / link_karma)
+            percentage_top_10_post_karma = (top_10_post_karma / link_karma)
         except ZeroDivisionError:
-            feature_vector.extend([0] * 2)
+            percentage_trusted_post_karma = 0
+            percentage_top_100_post_karma = 0
+            percentage_top_50_post_karma = 0
+            percentage_top_25_post_karma = 0
+            percentage_top_10_post_karma = 0
+
+        fv.append(percentage_trusted_post_karma,
+                  "\\% of Post Karma - Trusted Subreddits")
+        fv.append(percentage_top_100_post_karma,
+                  "\\% of Post Karma - Top 100 Subreddits")
+        fv.append(percentage_top_50_post_karma,
+                  "\\% of Post Karma - Top 50 Subreddits")
+        fv.append(percentage_top_25_post_karma,
+                  "\\% of Post Karma - Top 25 Subreddits")
+        fv.append(percentage_top_10_post_karma,
+                  "\\% of Post Karma - Top 10 Subreddits")
+
+        try:
+            percentage_trusted_comment_karma = (trusted_comment_karma /
+                                                comment_karma)
+            percentage_top_100_comment_karma = (top_100_comment_karma /
+                                                comment_karma)
+            percentage_top_50_comment_karma = (top_50_comment_karma /
+                                               comment_karma)
+            percentage_top_25_comment_karma = (top_25_comment_karma /
+                                               comment_karma)
+            percentage_top_10_comment_karma = (top_10_comment_karma /
+                                               comment_karma)
+        except ZeroDivisionError:
+            percentage_trusted_comment_karma = 0
+            percentage_top_100_comment_karma = 0
+            percentage_top_50_comment_karma = 0
+            percentage_top_25_comment_karma = 0
+            percentage_top_10_comment_karma = 0
+
+        fv.append(percentage_trusted_comment_karma,
+                  "\\% of Comment Karma - Trusted Subreddits")
+        fv.append(percentage_top_100_comment_karma,
+                  "\\% of Comment Karma - Top 100 Subreddits")
+        fv.append(percentage_top_50_comment_karma,
+                  "\\% of Comment Karma - Top 50 Subreddits")
+        fv.append(percentage_top_25_comment_karma,
+                  "\\% of Comment Karma - Top 25 Subreddits")
+        fv.append(percentage_top_10_comment_karma,
+                  "\\% of Comment Karma - Top 10 Subreddits")
+
+        try:
+            percentage_swear_count = (swear_count / word_count)
+            percentage_unique_words = (unique_words / word_count)
+        except ZeroDivisionError:
+            percentage_swear_count = 0
+            percentage_unique_words = 0
+
+        fv.append(percentage_swear_count,
+                  "\\% of Swear Words Used in Comments")
+        fv.append(percentage_unique_words,
+                  "Unique Words / Total Number Words")
 
         # Categorize the users
         if user_name in reliable_users:
-            training_input_matrix.append(feature_vector)
+            training_input_matrix.append(fv.feature_vector)
             training_output_vector.append(1.0)
             training_usernames.append(user_name)
         elif user_name in bad_users:
-            training_input_matrix.append(feature_vector)
+            training_input_matrix.append(fv.feature_vector)
             training_output_vector.append(-1.0)
             training_usernames.append(user_name)
         else:
-            test_input_matrix.append(feature_vector)
+            test_input_matrix.append(fv.feature_vector)
             test_usernames.append(user_name)
+
+        if save_docs:
+            feature_docs = fv.feature_docs
+            save_docs = False
 
     np.save("data/training_usernames.npy",
             training_usernames)
@@ -170,6 +233,11 @@ def main():
     np.save("data/test_input_matrix.npy",
             test_input_matrix)
 
+    np.save("data/feature_docs.npy", feature_docs)
+
+    with open("data/feature_guide.txt", "w") as f:
+        for idx, name in zip(range(len(feature_docs)), feature_docs):
+            f.write("{} : {}\n".format(idx, name))
 
 if __name__ == '__main__':
     main()

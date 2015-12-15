@@ -1,26 +1,26 @@
-Link Karma & 53.13\\
-Comment Karma & 18.41\\
-Average Karma per Post & 13.34\\
-Number of Total Posts & 9.45\\
-\% of Comment Karma - Top 100 Subreddits & 2.08\\
-Has Verified Email & 0.93\\
-Average Comment Karma per Comment & 0.75\\
-\% of Comment Karma - Top 10 Subreddits & 0.33\\
-Unique Words / Total Number Words & 0.29\\
-Number of Total Comments & 0.20\\
-Time Account Created & 0.17\\
-\% of Comment Karma - Trusted Subreddits & 0.15\\
-Flesch--Kincaid Readability of Comments & 0.15\\
+Link Karma & 56.68\\
+Comment Karma & 18.59\\
+Total Number of Comments & 13.55\\
+Average Karma per Post & 2.80\\
+Total Number of Posts & 2.71\\
+\% of Post Karma - Top 100 Subreddits & 0.81\\
+\% of Comment Karma - Top 100 Subreddits & 0.69\\
+Has Verified Email & 0.64\\
+Unique Words / Total Number Words & 0.57\\
+Average Comment Karma per Comment & 0.50\\
+\% of Comment Karma - Top 25 Subreddits & 0.39\\
+Flesch--Kincaid Readability of Comments & 0.35\\
+\% of Comment Karma - Top 10 Subreddits & 0.30\\
+\% of Comment Karma - Top 50 Subreddits & 0.30\\
+\% of Comment Karma - Trusted Subreddits & 0.26\\
+\% of Swear Words Used in Comments & 0.23\\
+Time Account Created & 0.22\\
 Is Reddit Gold & 0.14\\
-\% of Post Karma - Top 50 Subreddits & 0.10\\
-\% of Post Karma - Top 100 Subreddits & 0.10\\
-\% of Comment Karma - Top 50 Subreddits & 0.08\\
-\% of Post Karma - Trusted Subreddits & 0.07\\
-\% of Comment Karma - Top 25 Subreddits & 0.06\\
-\% of Swear Words Used in Comments & 0.03\\
-\% of Post Karma - Top 25 Subreddits & 0.03\\
-\% of Post Karma - Top 10 Subreddits & 0.02\\
+\% of Post Karma - Trusted Subreddits & 0.09\\
+\% of Post Karma - Top 25 Subreddits & 0.08\\
+\% of Post Karma - Top 50 Subreddits & 0.06\\
+\% of Post Karma - Top 10 Subreddits & 0.01\\
+Number of Gilded Comments & 0.00\\
 Number of Gilded Posts & 0.00\\
 \% of Posts Gilded & 0.00\\
-Number of Gilded Comments & 0.00\\
 \% of Comments Gilded & 0.00\\

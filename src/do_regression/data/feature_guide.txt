@@ -1,0 +1,26 @@
+0 : Is Reddit Gold
+1 : Has Verified Email
+2 : Time Account Created
+3 : Flesch--Kincaid Readability of Comments
+4 : Link Karma
+5 : Comment Karma
+6 : Total Number of Posts
+7 : Total Number of Comments
+8 : Number of Gilded Posts
+9 : Number of Gilded Comments
+10 : Average Karma per Post
+11 : \% of Posts Gilded
+12 : Average Comment Karma per Comment
+13 : \% of Comments Gilded
+14 : \% of Post Karma - Trusted Subreddits
+15 : \% of Post Karma - Top 100 Subreddits
+16 : \% of Post Karma - Top 50 Subreddits
+17 : \% of Post Karma - Top 25 Subreddits
+18 : \% of Post Karma - Top 10 Subreddits
+19 : \% of Comment Karma - Trusted Subreddits
+20 : \% of Comment Karma - Top 100 Subreddits
+21 : \% of Comment Karma - Top 50 Subreddits
+22 : \% of Comment Karma - Top 25 Subreddits
+23 : \% of Comment Karma - Top 10 Subreddits
+24 : \% of Swear Words Used in Comments
+25 : Unique Words / Total Number Words
