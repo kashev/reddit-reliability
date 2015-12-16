@@ -1,8 +1,9 @@
-\reddit{}, the self-proclaimed `frontpage of the internet', is slowly becoming
-just that; many popular news sources, such as The New York Times and CNN, have
-begun to use \reddit{} as a primary source of information in an effort to
-leverage the power of the large numbers of users which gather and try to provide
-and cross-validate information others have supplied.
+\reddit{}, the online social network which calls itself the `frontpage of the
+internet', is slowly becoming just that; many popular news sources, such as The
+New York Times and CNN, have begun to use \reddit{} as a primary source of
+information in an effort to leverage the power of the large numbers of users
+which gather and try to provide and cross-validate information others have
+supplied.
 
 In most cases, the information users share on \reddit{} is rather inoccuous. For
 example, a subset of \reddit{} users (or \textit{redditors}) gather information
@@ -33,3 +34,9 @@ in.\cite{Gilbert:2013:WUR:2441776.2441866} Additionally, every upvote and
 downvote is connected with a measurement of the community's net
 happiness/satisfaction with the content submitted. A user gains \textit{karma}
 for every upvote they receive, and loses karma for every downvote they get.
+
+In this project, we present a system by which we glean more meaning from
+redditor data than simple community response; instead, we develop a metric by
+which to judge the \textit{reliability} of a user. This realiaiblity score
+ranges from $-1 \leq s_r \leq 1$, and is computed from a model trained on a
+hand-picked ground truth of reliable and unreliable users.
